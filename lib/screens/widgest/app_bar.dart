@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../controller/get_controller.dart';
 
-AppBar Appbar(String title) {
+AppBar appBar(String title) {
     return AppBar(
       elevation: 0,
       backgroundColor: const Color(0xff242134),

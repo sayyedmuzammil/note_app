@@ -16,7 +16,6 @@ class MyHomePage extends StatelessWidget {
   }) : super(key: key);
   final String title;
 
-
   var data_control = Get.put(GetController());
 
   @override
@@ -24,13 +23,16 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       backgroundColor: const Color(0xff242134),
-      appBar: Appbar(title),
+      //appbar extracted
+      appBar: appBar(title),
+      //body started here
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: SizedBox(
           height: double.infinity,
-          width: double.infinity,  
+          width: double.infinity,
           child: GetBuilder<GetController>(builder: (controller) {
+            //adding state management in card
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 90.w,
@@ -39,29 +41,29 @@ class MyHomePage extends StatelessWidget {
                   mainAxisSpacing: 2.h),
               itemCount: data_control.list_title.length,
               itemBuilder: (context, index) {
-                return Card1(data_control: data_control, index: index,);
+                  // return a card(Each note as a card)
+                return Card1(
+                  dataControl: data_control,
+                  index: index,
+                );
               },
             );
           }),
         ),
       ),
-      floatingActionButton: 
-      FloatingActionButton.extended(
+      floatingActionButton: FloatingActionButton.extended(
+        //extended floating action button used for adding label in button
         hoverColor: Colors.blueAccent,
         backgroundColor: Colors.blueAccent,
         splashColor: Colors.red,
         onPressed: () {
-          settingModalBottomSheet(context);
+          modelBottomSheet(context); //pop upping bottom sheet
         },
-        tooltip: 'Add a Note',
-        heroTag: 'Note',
+        //adding two item icon and text in floating action button
         label: Row(
           children: const [Icon(Icons.note_add), Text('New Note')],
         ),
-      ), 
+      ),
     );
   }
-
-  
-  }
-
+}
