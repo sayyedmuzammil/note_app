@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
-      home: const MyHomePage(title: 'Your Notes'),
+      home:  MyHomePage(title: 'Your Notes'),
     );
       }
       );
