@@ -33,21 +33,27 @@ class MyHomePage extends StatelessWidget {
           width: double.infinity,
           child: GetBuilder<GetController>(builder: (controller) {
             //adding state management in card
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 90.w,
-                  childAspectRatio: 3 / 1.3, 
-                  crossAxisSpacing: 4.w,
-                  mainAxisSpacing: 2.h),
-              itemCount: data_control.list_title.length,
-              itemBuilder: (context, index) {
-                  // return a card(Each note as a card)
-                return Card1(
-                  dataControl: data_control,
-                  index: index,
-                );
-              },
-            );
+            return controller.list_title.isEmpty //checking the list is empty 
+                ? const Center(
+                    child: Text(
+                      "Please Add some Notes",
+                      style: TextStyle(color: Colors.white, fontSize: 15),
+                    ))
+                : GridView.builder(//if list is not empty showing this grid
+                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 90.w,
+                        childAspectRatio: 3 / 1.3,
+                        crossAxisSpacing: 4.w,
+                        mainAxisSpacing: 2.h),
+                    itemCount: data_control.list_title.length,
+                    itemBuilder: (context, index) {
+                      // return a card(Each note as a card)
+                      return Card1(
+                        dataControl: data_control,
+                        index: index,
+                      );
+                    },
+                  );
           }),
         ),
       ),
