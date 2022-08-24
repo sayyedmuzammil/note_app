@@ -16,43 +16,57 @@ class Card1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 10.h,
-      width: 45.w,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,     
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // showing title 
-            Text(
-              dataControl.list_title[index],
-              style: const TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
+    return Stack( 
+      //stack for adding a delete button 
+      children: [
+        Container(
+          height: 10.h,
+          width: 45.w,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.white,     
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // showing title 
+                Text(
+                  dataControl.list_title[index],
+                  style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black),
+                ),
+                // giving a space between title and description
+                const SizedBox(
+                  height: 7,
+                ),  
+                // showing desctiption
+                SizedBox(
+                    width: 40.w,
+                    child: Text(
+                      dataControl.list_description[index],
+                      style:
+                          const TextStyle(fontSize: 12, color: Colors.black), 
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2, 
+                    )),
+              ],
             ),
-            // giving a space between title and description
-            const SizedBox(
-              height: 7,
-            ),  
-            // showing desctiption
-            SizedBox(
-                width: 40.w,
-                child: Text(
-                  dataControl.list_description[index],
-                  style:
-                      const TextStyle(fontSize: 12, color: Colors.black), 
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2, 
-                )),
-          ],
+          ),
         ),
-      ),
+        //delete button
+      Positioned(
+        right: 0,  
+        top: -3,   
+        child: IconButton(onPressed: (){
+          dataControl.list_title.removeAt(index);
+          dataControl.list_description.removeAt(index);
+          dataControl.update(); 
+        }, icon: const Icon(Icons.delete, color: Colors.red, size: 22, )),), 
+      ],
     );
   }
 }

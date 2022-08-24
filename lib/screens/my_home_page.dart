@@ -36,7 +36,7 @@ class MyHomePage extends StatelessWidget {
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 90.w,
-                  childAspectRatio: 3 / 1.3,
+                  childAspectRatio: 3 / 1.3, 
                   crossAxisSpacing: 4.w,
                   mainAxisSpacing: 2.h),
               itemCount: data_control.list_title.length,
